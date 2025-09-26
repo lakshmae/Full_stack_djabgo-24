@@ -1,0 +1,74 @@
+/* UpdateProduct.css */
+
+.update-product-container {
+  width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.update-product-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 26px;
+}
+
+.update-product-container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.update-product-container input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.update-product-container button {
+  width: 100%;
+  padding: 12px 15px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.update-product-container button:hover {
+  background-color: #1e7e34;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  margin-top: 10px;
+}
+
+.cancel-button:hover {
+  background-color: #a71d2a;
+}
+
+.error {
+  color: #d93025;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.success {
+  color: #188038;
+  margin-top: 10px;
+  font-size: 14px;
+}

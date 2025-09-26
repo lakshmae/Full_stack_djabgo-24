@@ -1,0 +1,40 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+body {
+  
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Arial;
+  background-color: white;
+}
+
+
+.login-container h1 {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.login-container input {
+  margin: 8px 0;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  font-size: 1rem;
+  
+}
+
+.login-container button {
+  margin-top: 16px;
+}
+button:hover {
+  background: #64ff90;
+}

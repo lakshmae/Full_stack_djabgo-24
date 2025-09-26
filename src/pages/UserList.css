@@ -1,0 +1,56 @@
+.userlist-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.userlist-container h1 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.userlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.userlist-table thead {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.userlist-table th,
+.userlist-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.userlist-table tr:nth-child(even) {
+  background-color: #f7f9fc;
+}
+
+.userlist-table tr:hover {
+  background-color: #e3f2fd;
+  cursor: pointer;
+}
+
+.userlist-table th {
+  font-size: 15px;
+}
+
+.userlist-table td {
+  font-size: 14px;
+  color: #555;
+}
