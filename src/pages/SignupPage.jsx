@@ -80,80 +80,54 @@
 //   );
 // }
 
-
-
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { signup } from "../services/api/auth";
 import "./LoginPage.css";
 
 export default function SignupPage() {
-  const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({ username: "", email: "", password: "" });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleSignup = async () => {
     setError("");
     setSuccess("");
 
-    if (!credentials.username || !credentials.password || !credentials.email) {
-      setError("Please fill all fields");
-      return;
-    }
-
     try {
-      // ✅ axios call with credentials for cookies
-      const res = await axios.post(
-        "https://django8-zvkr.onrender.com/api/signup/",
-        credentials,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-
-      console.log(res.data);
+      await signup(username, email, password);
       setSuccess("Signup successful! Redirecting to login...");
-
-      // Redirect to login after 1.5 seconds
-      setTimeout(() => {
-        navigate("/");
-      }, 1500);
+      setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
-      console.error(err);
       setError(err.response?.data?.message || "Signup failed");
     }
   };
 
   return (
-    <div className="login-container">
-      <h1>Signup</h1>
-      <div className="login-form">
-        <input
-          placeholder="Username"
-          value={credentials.username}
-          onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
-        />
-        <input
-          placeholder="Email"
-          type="email"
-          value={credentials.email}
-          onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
-        />
-        <input
-          placeholder="Password"
-          type="password"
-          value={credentials.password}
-          onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-        />
-        <button className="signup-btn" onClick={handleSignup}>
-          Signup
-        </button>
-
-        {error && <p className="error-msg">{error}</p>}
-        {success && <p className="success-msg">{success}</p>}
-      </div>
+    <div className="body">
+      <h1>Sign Up</h1>
+      <input
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        placeholder="Password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleSignup}>Sign Up</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {success && <p style={{ color: "green" }}>{success}</p>}
     </div>
   );
 }

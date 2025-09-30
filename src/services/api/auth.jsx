@@ -1,19 +1,35 @@
-// src/services/api/auth.js
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+// src/services/api/auth.jsx
+import axios from "axios";
 
-export const login = async (credentials) => {
-  const response = await fetch(`${API_BASE}/login/`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials),
-    credentials: "include",
-  });
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.error || "Login failed");
-  return data;
+const API_BASE = "https://django8-zvkr.onrender.com/api/";
+
+const axiosInstance = axios.create({
+  baseURL: API_BASE,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Attach token automatically
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("authToken");
+    if (token) config.headers.Authorization = `Token ${token}`;
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+export const login = async (username, password) => {
+  const res = await axios.post(`${API_BASE}login/`, { username, password });
+  localStorage.setItem("authToken", res.data.token);
+  localStorage.setItem("username", res.data.username);
+  return res.data;
 };
 
-export const logout = async () => {
-  // Optional: add a /api/logout/ endpoint in Django
-  // For now, just clear frontend state
+export const signup = async (username, email, password) => {
+  const res = await axios.post(`${API_BASE}signup/`, { username, email, password });
+  return res.data;
 };
+
+export default axiosInstance;
