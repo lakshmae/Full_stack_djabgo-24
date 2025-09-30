@@ -18,7 +18,7 @@ export default function SignupPage() {
 
     try {
       // Send POST request to Django signup API
-      const res = await axios.post("http://127.0.0.1:8000/api/users/", credentials);
+      const res = await axios.post("https://django8-zvkr.onrender.com/api/signup/", credentials);
       console.log(res.data);
       setSuccess("Signup successful! Redirecting to login...");
       setError("");

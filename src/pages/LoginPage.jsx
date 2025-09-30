@@ -23,7 +23,7 @@ export default function LoginSignup() {
     try {
       if (isLogin) {
         // LOGIN
-        const res = await axios.post("http://127.0.0.1:8000/api/login/", {
+        const res = await axios.post("https://django8-zvkr.onrender.com/api/login/", {
           username: credentials.username,
           password: credentials.password,
         });
@@ -31,7 +31,7 @@ export default function LoginSignup() {
         navigate("/dashboard");
       } else {
         // SIGNUP
-        const res = await axios.post("http://127.0.0.1:8000/api/users/", credentials);
+        const res = await axios.post("https://django8-zvkr.onrender.com/api/signup/", credentials);
         console.log(res.data);
         setSuccess("Signup successful! You can now login.");
         setIsLogin(true);
