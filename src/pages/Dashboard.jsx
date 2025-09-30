@@ -19,7 +19,7 @@ export default function Dashboard() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/products/");
+      const res = await axios.get("https://django8-zvkr.onrender.com/api/products/");
       setProducts(res.data);
     } catch (err) {
       console.error(err);
@@ -32,7 +32,7 @@ export default function Dashboard() {
       return;
     }
     try {
-      await axios.post("http://127.0.0.1:8000/api/products/", newProduct);
+      await axios.post("https://django8-zvkr.onrender.com/api/products/", newProduct);
       setNewProduct({ productname: "", price: "", address: "" });
       fetchProducts();
     } catch (err) {
@@ -42,7 +42,7 @@ export default function Dashboard() {
 
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/products/${id}/`);
+      await axios.delete(`https://django8-zvkr.onrender.com/api/products/${id}/`);
       fetchProducts();
     } catch (err) {
       console.error(err);
