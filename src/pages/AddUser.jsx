@@ -10,7 +10,7 @@ export default function AddUser() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/users/", form);
+      await axios.post("https://django8-zvkr.onrender.com/api/users/", form);
       setMsg("User added successfully!");
       setForm({ username: "", email: "", password: "" });
     } catch (err) {

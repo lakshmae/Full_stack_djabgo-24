@@ -11,14 +11,14 @@ export default function UpdateProduct() {
   const [success, setSuccess] = useState("");
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/products/${id}/`)
+    axios.get(`https://django8-zvkr.onrender.com/api/products/${id}/`)
       .then(res => setProduct(res.data))
       .catch(err => setError("Failed to fetch product"));
   }, [id]);
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://127.0.0.1:8000/api/products/${id}/`, product);
+      await axios.put(`https://django8-zvkr.onrender.com/api/products/${id}/`, product);
       setSuccess("Product updated successfully!");
     } catch (err) {
       setError("Update failed");

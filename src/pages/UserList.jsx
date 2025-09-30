@@ -13,7 +13,7 @@ export default function UserList() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/users/");
+      const res = await axios.get("https://django8-zvkr.onrender.com/api/users/");
       setUsers(res.data);
     } catch (err) {
       console.error("Error fetching users:", err);
