@@ -105,6 +105,10 @@
 //   );
 // }
 
+
+
+// src/pages/LoginSignup.jsx
+// src/pages/LoginSignup.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/api/auth";
@@ -121,12 +125,10 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const data = await login(username, password);
-      if (data.token) {
-        navigate("/dashboard"); // redirect on success
-      }
+      await login(username, password);
+      navigate("/dashboard"); // redirect on success
     } catch (err) {
-      setError(err.response?.data?.error || "Invalid credentials");
+      setError(err.response?.data?.message || "Invalid credentials");
     }
   };
 
@@ -149,8 +151,27 @@ export default function LoginPage() {
           required
         />
         <button type="submit">Login</button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      <p style={{ marginTop: "10px" }}>
+        New user?{" "}
+        <button
+          onClick={() => navigate("/signup")}
+          style={{
+            background: "transparent",
+            border: "none",
+            color: "blue",
+            cursor: "pointer",
+            textDecoration: "underline",
+            padding: 0,
+            fontSize: "1em",
+          }}
+        >
+          Sign Up
+        </button>
+      </p>
     </div>
   );
 }
