@@ -105,9 +105,6 @@
 //   );
 // }
 
-
-
-// src/pages/LoginSignup.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/api/auth";
@@ -124,10 +121,12 @@ export default function LoginPage() {
     setError("");
 
     try {
-      await login(username, password);
-      navigate("/dashboard"); // redirect on success
+      const data = await login(username, password);
+      if (data.token) {
+        navigate("/dashboard"); // redirect on success
+      }
     } catch (err) {
-      setError(err.response?.data?.message || "Invalid credentials");
+      setError(err.response?.data?.error || "Invalid credentials");
     }
   };
 

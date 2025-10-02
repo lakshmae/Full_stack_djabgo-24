@@ -79,7 +79,6 @@
 //     </div>
 //   );
 // }
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api/auth";
@@ -100,9 +99,9 @@ export default function SignupPage() {
     try {
       await signup(username, email, password);
       setSuccess("Signup successful! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 1500);
+      setTimeout(() => navigate("/"), 1500);
     } catch (err) {
-      setError(err.response?.data?.message || "Signup failed");
+      setError(err.response?.data?.error || "Signup failed");
     }
   };
 
