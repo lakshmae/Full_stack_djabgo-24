@@ -80,6 +80,8 @@
 //   );
 // }
 
+
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api/auth";
@@ -93,41 +95,57 @@ export default function SignupPage() {
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
-  const handleSignup = async () => {
+  const handleSignup = async (e) => {
+    e.preventDefault();
     setError("");
     setSuccess("");
 
     try {
       await signup(username, email, password);
       setSuccess("Signup successful! Redirecting to login...");
-       navigate("/login");
+       navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");
     }
   };
 
   return (
-    <div className="body">
-      <h1>Sign Up</h1>
-      <input
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        placeholder="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleSignup}>Sign Up</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>{success}</p>}
+    <div className="auth-container">
+      <div className="auth-box">
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSignup}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Sign Up</button>
+        </form>
+
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+
+        <p className="toggle-text">
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")}>Login</span>
+        </p>
+      </div>
     </div>
   );
 }

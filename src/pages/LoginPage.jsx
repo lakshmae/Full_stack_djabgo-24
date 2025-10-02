@@ -109,6 +109,73 @@
 
 // src/pages/LoginSignup.jsx
 // src/pages/LoginSignup.jsx
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { login } from "../services/api/auth";
+// import "./LoginPage.css";
+
+// export default function LoginPage() {
+//   const [username, setUsername] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [error, setError] = useState("");
+//   const navigate = useNavigate();
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+//     setError("");
+
+//     try {
+//       await login(username, password);
+//       navigate("/dashboard"); // redirect on success
+//     } catch (err) {
+//       setError(err.response?.data?.message || "Invalid credentials");
+//     }
+//   };
+
+//   return (
+//     <div className="body">
+//       <h1>Login</h1>
+//       <form onSubmit={handleLogin}>
+//         <input
+//           type="text"
+//           placeholder="Username"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//           required
+//         />
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           required
+//         />
+//         <button type="submit">Login</button>
+//       </form>
+
+//       {error && <p style={{ color: "red" }}>{error}</p>}
+
+//       <p style={{ marginTop: "10px" }}>
+//         New user?{" "}
+//         <button
+//           onClick={() => navigate("/signup")}
+//           style={{
+//             background: "transparent",
+//             border: "none",
+//             color: "blue",
+//             cursor: "pointer",
+//             textDecoration: "underline",
+//             padding: 0,
+//             fontSize: "1em",
+//           }}
+//         >
+//           Sign Up
+//         </button>
+//       </p>
+//     </div>
+//   );
+// }
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/api/auth";
@@ -133,45 +200,34 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="body">
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="error">{error}</p>}
 
-      <p style={{ marginTop: "10px" }}>
-        New user?{" "}
-        <button
-          onClick={() => navigate("/signup")}
-          style={{
-            background: "transparent",
-            border: "none",
-            color: "blue",
-            cursor: "pointer",
-            textDecoration: "underline",
-            padding: 0,
-            fontSize: "1em",
-          }}
-        >
-          Sign Up
-        </button>
-      </p>
+        <p className="toggle-text">
+          New user?{" "}
+          <span onClick={() => navigate("/signup")}>Sign Up</span>
+        </p>
+      </div>
     </div>
   );
 }
