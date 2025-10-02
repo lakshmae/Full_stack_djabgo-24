@@ -100,7 +100,7 @@ export default function SignupPage() {
     try {
       await signup(username, email, password);
       setSuccess("Signup successful! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 1500);
+       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");
     }
