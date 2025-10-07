@@ -143,7 +143,7 @@ export default function SignupPage() {
 
         <p className="toggle-text">
           Already have an account?{" "}
-          <span onClick={() => navigate("/login")}>Login</span>
+          <span onClick={() => navigate("/")}>Login</span>
         </p>
       </div>
     </div>
