@@ -212,3 +212,21 @@
     white-space: nowrap;
   }
 }
+.cart-btn {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  margin-left: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cart-btn:hover {
+  background-color: #019870;
+}
+.remove-cart-btn {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}

@@ -124,11 +124,11 @@
 //   );
 // }
 
-// src/pages/Dashboard.jsx
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AdminLayout from "../components/AdminLayout";
 import { SearchContext } from "../components/SearchContext";
+import { CartContext } from "../components/CartContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
@@ -139,6 +139,7 @@ export default function Dashboard() {
     address: "",
   });
   const { searchTerm } = useContext(SearchContext);
+  const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -177,7 +178,6 @@ export default function Dashboard() {
     }
   };
 
-  // ✅ Corrected update route
   const handleUpdateClick = (id) => {
     navigate(`/update-product/${id}`);
   };
@@ -250,6 +250,12 @@ export default function Dashboard() {
                     onClick={() => deleteProduct(p.id)}
                   >
                     Delete
+                  </button>
+                  <button
+                    className="cart-btn"
+                    onClick={() => addToCart(p)}
+                  >
+                    Add to Cart
                   </button>
                 </td>
               </tr>
