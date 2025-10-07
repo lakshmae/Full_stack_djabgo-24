@@ -129,7 +129,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AdminLayout from "../components/AdminLayout";
 import { SearchContext } from "../components/SearchContext";
-import { useNavigate } from "react-router-dom"; // ✅ Add this
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -139,7 +139,7 @@ export default function Dashboard() {
     address: "",
   });
   const { searchTerm } = useContext(SearchContext);
-  const navigate = useNavigate(); // ✅ Add this
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
@@ -177,9 +177,9 @@ export default function Dashboard() {
     }
   };
 
-  // ✅ Update button navigation
+  // ✅ Corrected update route
   const handleUpdateClick = (id) => {
-    navigate(`/update/${id}`);
+    navigate(`/update-product/${id}`);
   };
 
   const filteredProducts = products.filter((p) =>
@@ -241,7 +241,7 @@ export default function Dashboard() {
                 <td>
                   <button
                     className="update-btn"
-                    onClick={() => handleUpdateClick(p.id)} // ✅ Navigate to update page
+                    onClick={() => handleUpdateClick(p.id)}
                   >
                     Update
                   </button>
